@@ -5,7 +5,11 @@ import './todolist.css';
 
 const TodoList = () => {
     return (
-        <ul>
+        <ul className='todo-list'>
+            <TodoItem />
+            <TodoItem />
+            <TodoItem />
+            <TodoItem />
             <TodoItem />
         </ul>
     )
