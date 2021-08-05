@@ -7,10 +7,9 @@ const TodoList = ({posts}) => {
 
     const elements = posts.map(element => {
         return (
-            <li className='li-style'>
+            <li key={element.id} className='li-style'>
                 <TodoItem
-                label={element.label}
-                id={element.id}/>
+                label={element.label}/>
             </li>
         )
     })
