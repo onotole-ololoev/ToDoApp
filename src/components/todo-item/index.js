@@ -1,14 +1,14 @@
 import React from "react";
-import DelBtn from "../delete-button";
+import Btn from "../button";
 
 import './todo-item.css';
 
-const TodoItem = () => {
+const TodoItem = ({label}) => {
     return (
-        <li className='todo-item'>
-            Ебануть пивка с посонами!
-            <DelBtn />
-        </li>
+        <div className='todo-item'>
+            <p>{label}</p>
+            <Btn delete='false'/>
+        </div>
     )
 }
 

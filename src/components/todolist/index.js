@@ -3,16 +3,23 @@ import TodoItem from "../todo-item";
 
 import './todolist.css';
 
-const TodoList = () => {
+const TodoList = ({posts}) => {
+
+    const elements = posts.map(element => {
+        return (
+            <li className='todo-item'>
+                <TodoItem
+                label={element.label}
+                id={element.id}/>
+            </li>
+        )
+    })
+
     return (
         <ul className='todo-list'>
-            <TodoItem />
-            <TodoItem />
-            <TodoItem />
-            <TodoItem />
-            <TodoItem />
+            {elements}
         </ul>
     )
-}
+};
 
 export default TodoList;
