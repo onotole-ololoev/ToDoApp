@@ -30,7 +30,7 @@ export default class TodoItem extends Component {
                 <p
                     onClick={this.onDone}
                     className={classNames}>{label}</p>
-                <Btn delete='false'/>
+                <Btn delete/>
             </div>
         )
     }

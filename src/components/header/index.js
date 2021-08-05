@@ -9,10 +9,10 @@ const Header = () => {
             <h1>My todo List</h1>
             <div className='header'>
                 <TextInput />
-                <Btn delete={false}/>
+                <Btn delete={false} />
             </div>
         </>
     )
-}
+};
 
 export default Header;
