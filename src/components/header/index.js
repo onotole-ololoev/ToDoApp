@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <>
             <h1>My todo List</h1>
-            <div>
+            <div className='header'>
                 <TextInput />
                 <Btn delete={false}/>
             </div>
