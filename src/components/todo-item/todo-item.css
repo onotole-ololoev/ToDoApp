@@ -26,4 +26,5 @@
 
 .done {
     text-decoration: line-through;
+    color: #f44336;
 }

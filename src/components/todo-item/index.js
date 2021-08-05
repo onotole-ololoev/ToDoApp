@@ -19,11 +19,12 @@ export default class TodoItem extends Component {
     }
 
     render() {
+        const {label} = this.props;
+        const {done} = this.state;
         let classNames = 'post-text'
-        if (this.state.done) {
+        if (done) {
             classNames += ' done';
         }
-        const {label} = this.props;
         return (
             <div className='todo-item'>
                 <p
