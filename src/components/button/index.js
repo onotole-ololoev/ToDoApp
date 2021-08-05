@@ -9,12 +9,17 @@ export default class Btn extends Component {
                 add: 'Добавить',
                 del: 'Удалить'
             }
+
         }
         this.onBtn = this.onBtn.bind(this);
     }
 
     onBtn() {
-        console.log('click')
+        if (this.props.delete) {
+            console.log('delete')
+        } else {
+            console.log('add')
+        }
     }
 
     render() {
