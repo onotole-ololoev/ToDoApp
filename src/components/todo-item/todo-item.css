@@ -4,3 +4,26 @@
     justify-content: space-between;
     width: 100%;
 }
+.doit {
+    height: 30px;
+    width: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: #f44336;
+}
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+}
+.post-text {
+    font-weight: bold;
+}
+
+.post-text:hover {
+    cursor: pointer;
+}
+
+.done {
+    text-decoration: line-through;
+}

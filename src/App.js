@@ -10,9 +10,9 @@ import './App.css';
 const App = () => {
 
     const data = [
-        {label: 'Ебануть пивка с друзьями', id: 1},
-        {label: 'Культурно выпить с женой', id: 2},
-        {label: 'Наебениться водяры с котом', id: 3}
+        {label: 'Ебануть пивка с друзьями', done: false, id: 1},
+        {label: 'Культурно выпить с женой', done: false, id: 2},
+        {label: 'Наебениться водяры с котом', done: false, id: 3}
     ]
 
         return (
