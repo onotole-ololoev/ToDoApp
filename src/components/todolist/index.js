@@ -11,7 +11,7 @@ const TodoList = ({posts, onDelete}) => {
             <li key={element.id} className='li-style'>
                 <TodoItem
                 label={element.label}
-                onDelete={() => onDelete(element.id)} />
+                onDelete={() => onDelete(element.id)}/>
             </li>
         )
     });

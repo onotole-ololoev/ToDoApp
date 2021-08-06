@@ -19,12 +19,13 @@ export default class App extends Component {
         }
         this.deleteTarget = this.deleteTarget.bind(this);
         this.addTarget = this.addTarget.bind(this);
+        //this.onToggleDone = this.onToggleDone.bind(this);
 
         this.maxId = 4;
     }
 
     deleteTarget(id) {
-        this.setState(({targets}) => {
+    /*    this.setState(({targets}) => {
             const index = targets.findIndex(item => item.id === id);
 
             const previos = targets.slice(0, index);
@@ -34,7 +35,13 @@ export default class App extends Component {
             return {
                 targets: newTargets
             }
-        });
+        }); */
+        this.setState(({targets}) => {
+            const newTargets = targets.filter(item => item.id !== id);
+            return {
+                targets: newTargets
+            }
+        })
 
     }
 
@@ -51,6 +58,23 @@ export default class App extends Component {
             }
         });
     }
+
+   /* onToggleDone(id) {
+        this.setState(({targets}) => {
+                const index = targets.findIndex((target) => { target.id === id});
+
+                const previos = targets.slice(0, index);
+                const after = targets.slice(index + 1);
+                const current = targets[index];
+                const newCurrent = {...current, done: !current.done};
+
+                const newTargets = [...previos, newCurrent, ...after];
+                return {
+                    targets: newTargets
+                }
+                })
+        } */
+
 
     render() {
 
