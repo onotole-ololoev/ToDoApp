@@ -5,6 +5,10 @@ import './header.css';
 
 const Header = () => {
 
+    const onAdd = () => {
+        console.log('addddd');
+    }
+
     return (
         <>
             <h1>My todo List</h1>
@@ -13,7 +17,7 @@ const Header = () => {
                 <Button
                     label={'Добавить'}
                     variant={'add'}
-                    onClick={() => {console.log('addddd')}}/>
+                    onClick={onAdd}/>
             </div>
         </>
     )
