@@ -9,16 +9,17 @@ const TodoList = ({posts}) => {
         return (
             <li key={element.id} className='li-style'>
                 <TodoItem
-                label={element.label}/>
+                label={element.label}
+                onDelete={(id) => { console.log(`deleteeeee ${element.id}`)}}/>
             </li>
         )
-    })
+    });
 
     return (
         <ul className='todo-list'>
             {elements}
         </ul>
     )
-};
+}
 
 export default TodoList;

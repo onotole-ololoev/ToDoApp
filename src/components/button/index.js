@@ -1,40 +1,16 @@
 import React, {Component} from "react";
 import './button.css';
 
-export default class Btn extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value : {
-                add: 'Добавить',
-                del: 'Удалить'
-            }
-
-        }
-        this.onBtn = this.onBtn.bind(this);
-    }
-
-    onBtn() {
-        if (this.props.delete) {
-            console.log('delete')
-        } else {
-            console.log('add')
-        }
-    }
-
-    render() {
-        let classNames = 'btn';
-        let valueBtn = this.state.value.add;
-        if (this.props.delete) {
-            classNames += ' btn-delete';
-            valueBtn = this.state.value.del;
-        }
-        return (
-            <button
-                type='button'
-                className={classNames}
-                onClick={this.onBtn}
-            >{valueBtn}</button>
-        )
-    }
+const Button = ({label, variant, onClick}) => {
+    let classNames = variant ? `btn btn--${variant}`: 'btn';
+    return (
+        <button
+            type='button'
+            className={classNames}
+            onClick={onClick}
+            >{label}</button>
+            )
 }
+
+
+export default Button;

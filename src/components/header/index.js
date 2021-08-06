@@ -1,15 +1,19 @@
 import React from "react";
 import TextInput from "../text-input";
-import Btn from "../button";
+import Button from "../button";
 import './header.css';
 
 const Header = () => {
+
     return (
         <>
             <h1>My todo List</h1>
             <div className='header'>
                 <TextInput />
-                <Btn delete={false} />
+                <Button
+                    label={'Добавить'}
+                    variant={'add'}
+                    onClick={() => {console.log('addddd')}}/>
             </div>
         </>
     )
