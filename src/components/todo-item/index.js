@@ -11,7 +11,6 @@ const TodoItem = ({label, onDelete}) => {
                 <Button
                     label={'Удалить'}
                     variant={'delete'}
-                    /*onClick={() => { console.log('deleteeeee')}} */
                     onClick={onDelete}/>
             </div>
         )

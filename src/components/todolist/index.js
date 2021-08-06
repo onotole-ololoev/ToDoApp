@@ -3,16 +3,15 @@ import TodoItem from "../todo-item";
 
 import './todolist.css';
 
-const TodoList = ({posts}) => {
-
-
+const TodoList = ({posts, onDelete}) => {
 
     const elements = posts.map(element => {
+
         return (
             <li key={element.id} className='li-style'>
                 <TodoItem
                 label={element.label}
-                onDelete={(id) => { console.log(`deleteeeee ${element.id}`)}}/>
+                onDelete={() => onDelete(element.id)} />
             </li>
         )
     });

@@ -17,15 +17,39 @@ export default class App extends Component {
                 {label: 'Наебениться водяры с котом', done: false, id: 3}
             ]
         }
+        this.deleteTarget = this.deleteTarget.bind(this);
+        this.addInput = this.addInput.bind(this);
+
+        this.maxId = 4;
+    }
+
+    deleteTarget(id) {
+        this.setState(({targets}) => {
+            const index = targets.findIndex(item => item.id === id);
+
+            const previos = targets.slice(0, index);
+            const after = targets.slice(index + 1);
+            const newTargets = [...previos, ...after];
+
+            return {
+                targets: newTargets
+            }
+        });
+
+    }
+
+    addInput(text) {
+        console.log(text);
     }
 
     render() {
 
         return (
             <div className='app'>
-                <Header />
+                <Header onAddInput={this.addInput}/>
                 <TodoList
-                    posts={this.state.targets}/>
+                    posts={this.state.targets}
+                    onDelete={this.deleteTarget}/>
             </div>
         )
     }

@@ -3,7 +3,7 @@ import TextInput from "../text-input";
 import Button from "../button";
 import './header.css';
 
-const Header = () => {
+const Header = ({onAddInput}) => {
 
     const onAdd = () => {
         console.log('addddd');
@@ -13,7 +13,8 @@ const Header = () => {
         <>
             <h1>My todo List</h1>
             <div className='header'>
-                <TextInput />
+                <TextInput
+                    addInput={onAddInput}/>
                 <Button
                     label={'Добавить'}
                     variant={'add'}
