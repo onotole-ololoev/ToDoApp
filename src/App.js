@@ -36,12 +36,8 @@ export default class App extends Component {
                 targets: newTargets
             }
         }); */
-        this.setState(({targets}) => {
-            const newTargets = targets.filter(item => item.id !== id);
-            return {
-                targets: newTargets
-            }
-        })
+        const targets = this.state.targets.filter(item => item.id !==id);
+        this.setState({targets});
 
     }
 
