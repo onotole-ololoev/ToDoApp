@@ -18,7 +18,7 @@ export default class App extends Component {
             ]
         }
         this.deleteTarget = this.deleteTarget.bind(this);
-        this.addInput = this.addInput.bind(this);
+        this.addTarget = this.addTarget.bind(this);
 
         this.maxId = 4;
     }
@@ -38,15 +38,26 @@ export default class App extends Component {
 
     }
 
-    addInput(text) {
-        console.log(text);
+    addTarget(text) {
+       const newLabel = {
+                label: text,
+                done: false,
+                id: this.maxId++
+        };
+        this.setState(({targets}) => {
+            const newArr = [...targets, newLabel];
+            return {
+                targets: newArr
+            }
+        });
     }
 
     render() {
 
         return (
             <div className='app'>
-                <Header onAddInput={this.addInput}/>
+                <Header
+                    onSave={this.addTarget}/>
                 <TodoList
                     posts={this.state.targets}
                     onDelete={this.deleteTarget}/>

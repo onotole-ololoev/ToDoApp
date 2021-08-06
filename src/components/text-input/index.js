@@ -1,7 +1,7 @@
 import React from "react";
 import './text-input.css';
 
-const TextInput = ({addInput}) => {
+const TextInput = ({text}) => {
 
 
 
@@ -10,7 +10,9 @@ const TextInput = ({addInput}) => {
             className='input'
             type='text'
             placeholder='Новая задача'
-            onChange={(e) => addInput(e.target.value)}
+            onChange={(e) => {
+                e.target = text;
+            }}
         />
     )
 }
