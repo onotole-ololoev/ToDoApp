@@ -1,23 +1,60 @@
-import React from "react";
+import React, {Component} from "react";
 import TextInput from "../text-input";
 import Button from "../button";
 import './header.css';
 
-const Header = ({onSave}) => {
+
+export default class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            textInput: ''
+        }
+        this.onInput = this.onInput.bind(this);
+    }
+
+    onInput(e) {
+        // console.log(e.target.value);
+        this.setState({
+            textInput: e.target.value
+        })
+    }
+
+
+    render() {
+        return (
+            <>
+                <h1>My todo List</h1>
+                <div className='header'>
+                    <TextInput inputValue={this.onInput}/>
+                    <Button
+                        label={'Добавить'}
+                        variant={'add'}
+                        onClick={() => this.props.onSave(this.state.textInput)}/>
+                </div>
+            </>
+        )
+    }
+}
+
+/*const Header = ({onSave}) => {
 
 
     return (
         <>
             <h1>My todo List</h1>
             <div className='header'>
-                <TextInput />
+                <TextInput inputValue={(e) => {
+                    const text = e.target.value;
+                    return console.log(text);
+                }}/>
                 <Button
                     label={'Добавить'}
                     variant={'add'}
-                    onClick={() => onSave('text')}/>
+                    onClick={() => onSave('....')}/>
             </div>
         </>
     )
 };
 
-export default Header;
+export default Header; */
