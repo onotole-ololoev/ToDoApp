@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { v4 as uuidv4 } from 'uuid';
 import Header from './components/header';
 import TodoList from "./components/todolist";
 
@@ -22,7 +23,8 @@ export default class App extends Component {
         this.addTarget = this.addTarget.bind(this);
         //this.onToggleDone = this.onToggleDone.bind(this);
 
-        this.maxId = 4;
+        // this.maxId = 4;
+
     }
 
     deleteTarget(id) {
@@ -46,7 +48,8 @@ export default class App extends Component {
        const newLabel = {
                 label: text,
                 done: false,
-                id: this.maxId++
+               //id: this.maxId++
+                id: uuidv4()
         };
         this.setState(({targets}) => {
             const newArr = [...targets, newLabel];
@@ -54,6 +57,7 @@ export default class App extends Component {
                 targets: newArr
             }
         });
+        console.log(newLabel.id);
     }
 
    /* onToggleDone(id) {
