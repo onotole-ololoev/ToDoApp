@@ -11,11 +11,12 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            targets: [
-                {label: 'Ебануть пивка с друзьями', done: false, id: 1},
-                {label: 'Культурно выпить с женой', done: false, id: 2},
-                {label: 'Наебениться водяры с котом', done: false, id: 3}
-            ]
+            targets: []
+            // targets: [
+            //     {label: 'Ебануть пивка с друзьями', done: false, id: 1},
+            //     {label: 'Культурно выпить с женой', done: false, id: 2},
+            //     {label: 'Наебениться водяры с котом', done: false, id: 3}
+            // ]
         }
         this.deleteTarget = this.deleteTarget.bind(this);
         this.addTarget = this.addTarget.bind(this);

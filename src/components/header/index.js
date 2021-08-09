@@ -11,6 +11,7 @@ export default class Header extends Component {
             textInput: ''
         }
         this.onInput = this.onInput.bind(this);
+        this.onAdd = this.onAdd.bind(this);
     }
 
     onInput(e) {
@@ -20,17 +21,29 @@ export default class Header extends Component {
         })
     }
 
+    onAdd() {
+        this.props.onSave(this.state.textInput);
+        this.setState({
+            textInput: ''
+        })
+    }
+
+
 
     render() {
         return (
             <>
                 <h1>My todo List</h1>
                 <div className='header'>
-                    <TextInput inputValue={this.onInput}/>
+                    <TextInput
+                        inputValue={this.onInput}
+                        value={this.state.textInput}/>
                     <Button
                         label={'Добавить'}
                         variant={'add'}
-                        onClick={() => this.props.onSave(this.state.textInput)}/>
+                       // onClick={() => this.props.onSave(this.state.textInput)}
+                        onClick={this.onAdd}
+                    />
                 </div>
             </>
         )
