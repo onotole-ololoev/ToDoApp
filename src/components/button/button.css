@@ -21,3 +21,7 @@
 .btn--add {
     background-color: green;
 }
+.btn--done {
+    background-color: lawngreen;
+    color: grey;
+}

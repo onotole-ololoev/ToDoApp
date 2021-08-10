@@ -12,12 +12,15 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            completed: false,
             textInput: '',
             targets: []
         }
         this.deleteTarget = this.deleteTarget.bind(this);
         this.addTarget = this.addTarget.bind(this);
         this.onInputValue = this.onInputValue.bind(this);
+        this.onCompleted = this.onCompleted.bind(this);
+
 
     }
 
@@ -30,7 +33,7 @@ export default class App extends Component {
     addTarget() {
        const newLabel = {
                 label: this.state.textInput,
-                done: false,
+                completed: false,
                 id: uuidv4()
         };
         this.setState(({targets}) => {
@@ -49,6 +52,13 @@ export default class App extends Component {
         )
     }
 
+    onCompleted() {
+        this.setState({completed: true});
+        console.log(this.state.targets.completed);
+        const targets = this.state.targets.map((item) => item.completed === false);
+        this.setState({targets});
+    }
+
     render() {
 
         return (
@@ -57,9 +67,22 @@ export default class App extends Component {
                     addTarget={this.addTarget}
                     onInputValue={this.onInputValue}
                     value={this.state.textInput}/>
-                <TodoList
-                    posts={this.state.targets}
-                    onDelete={this.deleteTarget}/>
+                <div className='todolist'>
+                    <div className='todo-box'>
+                        <h2>Need to do</h2>
+                        <TodoList
+                            onCompleted={this.onCompleted}
+                            posts={this.state.targets}
+                            onDelete={this.deleteTarget}/>
+                    </div>
+                    <div className='done-box'>
+                        <h2>Done!</h2>
+                        <TodoList
+                            onCompleted={this.onCompleted}
+                            posts={this.state.targets}
+                            onDelete={this.deleteTarget}/>
+                    </div>
+                </div>
             </div>
         )
     }

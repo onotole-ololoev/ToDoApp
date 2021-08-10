@@ -3,7 +3,8 @@ import TodoItem from "../todo-item";
 
 import './todolist.css';
 
-const TodoList = ({posts, onDelete}) => {
+
+const TodoList = ({posts, onDelete, onCompleted}) => {
 
     const elements = posts.map(element => {
 
@@ -11,7 +12,8 @@ const TodoList = ({posts, onDelete}) => {
             <li key={element.id} className='li-style'>
                 <TodoItem
                 label={element.label}
-                onDelete={() => onDelete(element.id)}/>
+                onDelete={() => onDelete(element.id)}
+                onCompleted={onCompleted}/>
             </li>
         )
     });

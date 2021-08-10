@@ -3,15 +3,21 @@ import Button from "../button";
 
 import './todo-item.css';
 
-const TodoItem = ({label, onDelete}) => {
+const TodoItem = ({label, onDelete, onCompleted}) => {
 
         return (
             <div className='todo-item'>
                 <p>{label}</p>
-                <Button
-                    label={'Удалить'}
-                    variant={'delete'}
-                    onClick={onDelete}/>
+                    <div>
+                         <Button
+                                label={'Сделано'}
+                                variant={'done'}
+                                onClick={onCompleted}/>
+                         <Button
+                                label={'Удалить'}
+                                variant={'delete'}
+                                onClick={onDelete}/>
+                    </div>
             </div>
         )
 

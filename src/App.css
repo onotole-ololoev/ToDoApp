@@ -7,3 +7,23 @@
     background-color: #9bcfb5;
     height: 100vh;
 }
+.todolist {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.todo-box {
+    padding: 10px;
+    width: 45%;
+    background: lightsteelblue;
+    border-radius: 10px;
+    border:3px solid #9E9E9E;
+}
+.done-box {
+    padding: 10px;
+    width: 45%;
+    background: grey;
+    border-radius: 10px;
+    border:3px solid #9E9E9E;
+}
