@@ -9,10 +9,9 @@ const TodoItem = ({label, onDelete, onCompleted}) => {
             <div className='todo-item'>
                 <p>{label}</p>
                     <div>
-                         <Button
-                                label={'Сделано'}
-                                variant={'done'}
-                                onClick={onCompleted}/>
+                         <input
+                                type={'checkbox'}
+                                onChange={onCompleted}/>
                          <Button
                                 label={'Удалить'}
                                 variant={'delete'}

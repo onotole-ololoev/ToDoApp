@@ -52,21 +52,38 @@ export default class App extends Component {
         )
     }
 
-    onCompleted() {
-        this.setState({completed: true});
-        console.log(this.state.targets.completed);
-        const targets = this.state.targets.map((item) => item.completed === false);
-        this.setState({targets});
+    onCompleted(id) {
+        this.setState(({targets}) => {
+
+            const index = targets.findIndex(target => target.id === id);
+
+            const old = targets[index];
+            const newTarget = {...old, completed: !old.completed};
+
+            const newTargets = [...targets.slice(0, index), newTarget, ...targets.slice(index + 1)];
+
+            // const newTarget = {...targets[index], completed: !targets[index].completed};
+            // const newTargets = [...targets.slice(0, index), newTarget, ...targets(index + 1)];
+            return {
+                targets: newTargets
+            }
+
+        })
     }
 
     render() {
 
+        let completedTargets = this.state.targets.filter(item => item.completed === true).length;
+        let uncompletedTargets = this.state.targets.filter(item => item.completed === false).length;
+
         return (
+
             <div className='app'>
                 <Header
                     addTarget={this.addTarget}
                     onInputValue={this.onInputValue}
                     value={this.state.textInput}/>
+                <p>Выполнено - {completedTargets} задач, осталось - {uncompletedTargets}.</p>
                 <div className='todolist'>
                     <div className='todo-box'>
                         <h2>Need to do</h2>
@@ -77,10 +94,7 @@ export default class App extends Component {
                     </div>
                     <div className='done-box'>
                         <h2>Done!</h2>
-                        <TodoList
-                            onCompleted={this.onCompleted}
-                            posts={this.state.targets}
-                            onDelete={this.deleteTarget}/>
+
                     </div>
                 </div>
             </div>
