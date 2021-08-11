@@ -12,14 +12,14 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            completed: false,
+            //completed: false,
             textInput: '',
             targets: []
         }
         this.deleteTarget = this.deleteTarget.bind(this);
         this.addTarget = this.addTarget.bind(this);
         this.onInputValue = this.onInputValue.bind(this);
-        this.onCompleted = this.onCompleted.bind(this);
+        this.onChecked = this.onChecked.bind(this);
 
 
     }
@@ -52,29 +52,15 @@ export default class App extends Component {
         )
     }
 
-    onCompleted(id) {
-        this.setState(({targets}) => {
-
-            const index = targets.findIndex(target => target.id === id);
-
-            const old = targets[index];
-            const newTarget = {...old, completed: !old.completed};
-
-            const newTargets = [...targets.slice(0, index), newTarget, ...targets.slice(index + 1)];
-
-            // const newTarget = {...targets[index], completed: !targets[index].completed};
-            // const newTargets = [...targets.slice(0, index), newTarget, ...targets(index + 1)];
-            return {
-                targets: newTargets
-            }
-
-        })
+    onChecked(e) {
+        console.log(e.target.checked);
     }
 
     render() {
 
         let completedTargets = this.state.targets.filter(item => item.completed === true).length;
         let uncompletedTargets = this.state.targets.filter(item => item.completed === false).length;
+
 
         return (
 
@@ -88,7 +74,7 @@ export default class App extends Component {
                     <div className='todo-box'>
                         <h2>Need to do</h2>
                         <TodoList
-                            onCompleted={this.onCompleted}
+                            onChecked={this.onChecked}
                             posts={this.state.targets}
                             onDelete={this.deleteTarget}/>
                     </div>
