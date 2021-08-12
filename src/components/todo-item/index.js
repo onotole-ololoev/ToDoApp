@@ -24,14 +24,3 @@ const TodoItem = ({label, onDelete, onChecked, checked}) => {
 }
 
 export default TodoItem;
-
-/*const TodoItem = ({label}) => {
-    return (
-        <div className='todo-item'>
-            <p>{label}</p>
-            <Btn delete='false'/>
-        </div>
-    )
-}
-
-export default TodoItem; */

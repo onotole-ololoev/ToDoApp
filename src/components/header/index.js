@@ -4,7 +4,7 @@ import Button from "../button";
 import './header.css';
 
 
-const Header = ({addTarget, onInputValue, value}) => {
+const Header = ({addTarget, onInputValue, value, isEdited, saveTarget}) => {
 
 
         return (
@@ -16,9 +16,9 @@ const Header = ({addTarget, onInputValue, value}) => {
                         value={value}
                         />
                     <Button
-                        label={'Добавить'}
-                        variant={'add'}
-                        onClick={addTarget}
+                        label={isEdited ? 'Сохранить' : 'Добавить'}
+                        variant={isEdited ? 'save' : 'add'}
+                        onClick={isEdited ? saveTarget : addTarget}
                     />
                 </div>
             </>

@@ -13,6 +13,7 @@ export default class App extends Component {
         super(props);
         this.state = {
             textInput: '',
+            isEdited: false,
             targets: []
         }
         this.deleteTarget = this.deleteTarget.bind(this);
@@ -62,16 +63,23 @@ export default class App extends Component {
         this.setState({targets : newArr});
     }
 
+    saveTarget() {
+        //
+    }
+
+
     render() {
 
-        let completedTargets = this.state.targets.filter(item => item.completed === true).length;
-        let uncompletedTargets = this.state.targets.filter(item => item.completed === false).length;
+        const completedTargets = this.state.targets.filter(item => item.completed === true).length;
+        const uncompletedTargets = this.state.targets.filter(item => item.completed === false).length;
 
 
         return (
 
             <div className='app'>
                 <Header
+                    saveTarget={this.saveTarget}
+                    isEdited={this.state.isEdited}
                     addTarget={this.addTarget}
                     onInputValue={this.onInputValue}
                     value={this.state.textInput}/>
