@@ -4,7 +4,7 @@ import TodoItem from "../todo-item";
 import './todolist.css';
 
 
-const TodoList = ({posts, onDelete, onChecked, onEdit}) => {
+const TodoList = ({posts, onDelete, onChecked, onEdit, isEdited}) => {
 
     const elements = posts.map(element => {
 
@@ -16,6 +16,7 @@ const TodoList = ({posts, onDelete, onChecked, onEdit}) => {
                 onChecked={(e) => onChecked(e, element.id)}
                 checked={element.completed}
                 onEdit={(e) => onEdit(e, element.label)}
+                isEdited={isEdited}
                 />
             </li>
         )

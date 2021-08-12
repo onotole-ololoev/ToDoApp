@@ -120,11 +120,13 @@ export default class App extends Component {
                             posts={this.state.targets.filter(item => !item.completed)}
                             onDelete={this.deleteTarget}
                             onEdit={this.onEdit}
+                            isEdited
                         />
                     </div>
                     <div className='done-box'>
                         <h2>Done!</h2>
                         <TodoList
+
                             onChecked={this.onChecked}
                             posts={this.state.targets.filter(item => item.completed)}
                             onDelete={this.deleteTarget}/>
