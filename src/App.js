@@ -72,6 +72,8 @@ export default class App extends Component {
         const index = this.state.targets.findIndex((item) => item.label === label);
         const newItem = this.state.targets[index];
         this.setState({textInput: newItem.label})
+        const newArr = [...this.state.targets.slice(0, index), ...this.state.targets.slice(index + 1)]
+        this.setState({targets: newArr})
 
     }
 
