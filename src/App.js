@@ -20,6 +20,8 @@ export default class App extends Component {
         this.addTarget = this.addTarget.bind(this);
         this.onInputValue = this.onInputValue.bind(this);
         this.onChecked = this.onChecked.bind(this);
+        this.onEdit=this.onEdit.bind(this);
+        this.saveTarget=this.saveTarget.bind(this);
 
 
     }
@@ -63,14 +65,19 @@ export default class App extends Component {
         this.setState({targets : newArr});
     }
 
+    onEdit(e, label){
+        //отправляем на редактирование
+        this.setState({isEdited: true})
+        console.log(label);
+        const labelToCreate = this.state.targets.filter((item) => item.label === label);
+        this.setState({textInput: labelToCreate.filter})
+
+    }
+
     saveTarget() {
         //сохраняем изменения
     }
 
-    onEdit(e, label){
-        //отправляем на редактирование
-        console.log(e, label);
-    }
 
     render() {
 
