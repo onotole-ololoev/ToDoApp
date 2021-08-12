@@ -69,8 +69,9 @@ export default class App extends Component {
         //отправляем на редактирование
         this.setState({isEdited: true})
         console.log(label);
-        const labelToCreate = this.state.targets.filter((item) => item.label === label);
-        this.setState({textInput: labelToCreate.filter})
+        const index = this.state.targets.findIndex((item) => item.label === label);
+        const newItem = this.state.targets[index];
+        this.setState({textInput: newItem.label})
 
     }
 
