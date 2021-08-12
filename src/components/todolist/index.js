@@ -13,7 +13,9 @@ const TodoList = ({posts, onDelete, onChecked}) => {
                 <TodoItem
                 label={element.label}
                 onDelete={() => onDelete(element.id)}
-                onChecked={onChecked}/>
+                onChecked={(e) => onChecked(e, element.id)}
+                checked={element.completed}
+                />
             </li>
         )
     });

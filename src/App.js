@@ -51,8 +51,15 @@ export default class App extends Component {
         )
     }
 
-    onChecked(e) {
-        console.log(e.target.checked);
+    onChecked(e, todoId) {
+        const newArr = this.state.targets.map((item) => {
+            if (item.id === todoId) {
+                return {...item, completed: e.target.checked}
+            } else {
+                return item
+            }
+        })
+        this.setState({targets : newArr});
     }
 
     render() {
@@ -74,12 +81,15 @@ export default class App extends Component {
                         <h2>Need to do</h2>
                         <TodoList
                             onChecked={this.onChecked}
-                            posts={this.state.targets}
+                            posts={this.state.targets.filter(item => !item.completed)}
                             onDelete={this.deleteTarget}/>
                     </div>
                     <div className='done-box'>
                         <h2>Done!</h2>
-
+                        <TodoList
+                            onChecked={this.onChecked}
+                            posts={this.state.targets.filter(item => item.completed)}
+                            onDelete={this.deleteTarget}/>
                     </div>
                 </div>
             </div>
