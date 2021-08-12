@@ -64,9 +64,13 @@ export default class App extends Component {
     }
 
     saveTarget() {
-        //
+        //сохраняем изменения
     }
 
+    onEdit(e, label){
+        //отправляем на редактирование
+        console.log(e, label);
+    }
 
     render() {
 
@@ -90,7 +94,9 @@ export default class App extends Component {
                         <TodoList
                             onChecked={this.onChecked}
                             posts={this.state.targets.filter(item => !item.completed)}
-                            onDelete={this.deleteTarget}/>
+                            onDelete={this.deleteTarget}
+                            onEdit={this.onEdit}
+                        />
                     </div>
                     <div className='done-box'>
                         <h2>Done!</h2>

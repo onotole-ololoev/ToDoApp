@@ -3,7 +3,7 @@ import Button from "../button";
 
 import './todo-item.css';
 
-const TodoItem = ({label, onDelete, onChecked, checked}) => {
+const TodoItem = ({label, onDelete, onChecked, checked, onEdit}) => {
 
         return (
             <div className='todo-item'>
@@ -17,6 +17,10 @@ const TodoItem = ({label, onDelete, onChecked, checked}) => {
                                 label={'Удалить'}
                                 variant={'delete'}
                                 onClick={onDelete}/>
+                        <Button
+                            label={'Изм.'}
+                            variant={'save'}
+                            onClick={onEdit}/>
                     </div>
             </div>
         )
