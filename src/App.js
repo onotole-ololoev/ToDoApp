@@ -77,8 +77,22 @@ export default class App extends Component {
 
     }
 
-    saveTarget() {
+    saveTarget(e) {
         //сохраняем изменения
+        this.setState({isEdited: false})
+        const newLabel = {
+            label: this.state.textInput,
+            completed: false,
+            id: uuidv4()
+        };
+        this.setState(({targets}) => {
+            const newArr = [...targets, newLabel];
+            return {
+                targets: newArr,
+                textInput: ''
+            }
+        });
+
     }
 
 
