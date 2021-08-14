@@ -77,9 +77,9 @@ export default class App extends Component {
 
     }
 
-    saveTarget(editedId) {
+    saveTarget() {
         const editedArr = this.state.targets.map((item) => {
-            if (item.id === editedId) {
+            if (item.id === this.state.editedId) {
                 return {...item, label: this.state.textInput}
             } else {
                 return {item}
