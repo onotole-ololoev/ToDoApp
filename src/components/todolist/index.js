@@ -15,7 +15,7 @@ const TodoList = ({posts, onDelete, onChecked, onEdit, isEdited}) => {
                 onDelete={() => onDelete(element.id)}
                 onChecked={(e) => onChecked(e, element.id)}
                 checked={element.completed}
-                onEdit={(e) => onEdit(e, element.label)}
+                onEdit={() => onEdit(element.id)}
                 isEdited={isEdited}
                 />
             </li>

@@ -14,6 +14,7 @@ export default class App extends Component {
         this.state = {
             textInput: '',
             isEdited: false,
+            editedId: '',
             targets: []
         }
         this.deleteTarget = this.deleteTarget.bind(this);
@@ -65,33 +66,32 @@ export default class App extends Component {
         this.setState({targets : newArr});
     }
 
-    onEdit(e, label){
-        //отправляем на редактирование
-        this.setState({isEdited: true})
-        console.log(label);
-        const index = this.state.targets.findIndex((item) => item.label === label);
-        const newItem = this.state.targets[index];
-        this.setState({textInput: newItem.label})
-        const newArr = [...this.state.targets.slice(0, index), ...this.state.targets.slice(index + 1)]
-        this.setState({targets: newArr})
+    onEdit(id){
+        const editedItem = this.state.targets.find((item) => item.id === id);
+        this.setState({
+            isEdited: true,
+            textInput: editedItem.label,
+            editedId: editedItem.id
+            })
+        console.log(editedItem.id, editedItem.label);
 
     }
 
-    saveTarget(e) {
-        //сохраняем изменения
-        this.setState({isEdited: false})
-        const newLabel = {
-            label: this.state.textInput,
-            completed: false,
-            id: uuidv4()
-        };
-        this.setState(({targets}) => {
-            const newArr = [...targets, newLabel];
-            return {
-                targets: newArr,
-                textInput: ''
+    saveTarget(editedId) {
+        const editedArr = this.state.targets.map((item) => {
+            if (item.id === editedId) {
+                return {...item, label: this.state.textInput}
+            } else {
+                return {item}
             }
-        });
+        })
+
+        this.setState({
+            isEdited: false,
+            targets: editedArr,
+            textInput: '',
+            editedId: ''
+        })
 
     }
 
