@@ -6,80 +6,91 @@ import TodoList from "./components/todolist";
 
 import './App.css';
 
-
+const initState = {
+    textInput: '',
+    isEdited: false,
+    editedId: '',
+    list: []
+}
 
 const App = () => {
 
-    const [textInput, setTextInput] = useState('');
-    const [isEdited, setIsEdited] = useState(false);
-    const [editedId, setEditedId] = useState('');
-    const [targets, setDeleteTargets] = useState([]);
-    const [targets, setAddTargets] = useState([]);
-    const [target, setSaveTarget] = useState();
+    const [state, setState] = useState(initState);
 
-
-    function setIsEdited(isEdited) {
-            return isEdited;
+    function isEdited() {
+            return state.isEdited;
     }
 
-    function setEditedId(editedId) {
-        return editedId;
-    }
-
-    function setDeleteTarget(id) {
-            const newArr = targets.filter(item => item.id !==id);
-            return newArr;
+    function deleteList(id) {
+            const newArr = state.list.filter(item => item.id !==id);
+            setState({
+                ...state,
+                list: newArr
+            })
          }
 
-    function setAddTarget() {
+    function addList() {
             const newLabel = {
-                    label: textInput,
+                    label: state.textInput,
                     completed: false,
                     id: uuidv4()
             };
 
-            const newArr = [...targets, newLabel];
-            return newArr;
-
+            const newArr = [...state.list, newLabel];
+            setState({
+                ...state,
+                list: newArr
+            });
     }
 
     function setTextInput(e) {
-        const textInput = e.target.value;
-        return textInput;
-
+        const newTextInput = e.target.value;
+        setState({
+            ...state,
+            textInput: newTextInput
+        })
      }
 
     function onChecked(e, todoId) {
-        const newArr = targets.map((item) => {
+        const newArr = state.list.map((item) => {
             if (item.id === todoId) {
                 return {...item, completed: e.target.checked}
             } else {
                 return item
             }
         })
-        return newArr;
+        setState({
+            ...state,
+            list: newArr
+        })
     }
 
 
     function onEdit(id){
-        const editedItem = targets.find((item) => item.id === id);
-        setIsEdited(true);
-        setTextInput(editedItem.label);
-        setEditedId(editedItem.id);
+        const editedItem = state.list.find((item) => item.id === id);
+        setState({
+            ...state,
+            textInput: editedItem.label,
+            isEdited: true,
+            editedId: editedItem.id
+        })
     }
 
-    function saveTarget() {
-        const editedArr = targets.map((item) => {
-            if (item.id === editedId) {
-                return {...item, label: textInput}
+    function saveList() {
+        const editedArr = state.list.map((item) => {
+            if (item.id === state.editedId) {
+                return {...item, label: state.textInput}
             } else {
                 return {item}
             }
         })
-        setIsEdited(false);
-        setTextInput('');
-        setEditedId('');
-        return editedArr;
+        setState({
+            ...state,
+            isEdited: false,
+            textInput: '',
+            editedId: '',
+            list: editedArr
+        })
     }
 
     // constructor(props) {
@@ -167,27 +178,27 @@ const App = () => {
     //     })
     //
     // }
-        const completedTargets = targets.filter(item => item.completed === true).length;
-        const uncompletedTargets = targets.filter(item => item.completed === false).length;
+        const completedTargets = state.list.filter(item => item.completed === true).length;
+        const uncompletedTargets = state.list.filter(item => item.completed === false).length;
 
 
         return (
 
             <div className='app'>
                 <Header
-                    saveTarget={saveTarget}
-                    isEdited={setIsEdited}
-                    addTarget={setAddTarget}
+                    saveTarget={saveList}
+                    isEdited={isEdited}
+                    addTarget={addList}
                     onInputValue={setTextInput}
-                    value={textInput}/>
+                    value={state.textInput}/>
                 <p>Выполнено - {completedTargets} задач, осталось - {uncompletedTargets}.</p>
                 <div className='todolist'>
                     <div className='todo-box'>
                         <h2>Need to do</h2>
                         <TodoList
                             onChecked={onChecked}
-                            posts={targets.filter(item => !item.completed)}
-                            onDelete={setDeleteTarget}
+                            posts={state.list.filter(item => !item.completed)}
+                            onDelete={deleteList}
                             onEdit={onEdit}
                             isEdited
                         />
@@ -197,8 +208,8 @@ const App = () => {
                         <TodoList
 
                             onChecked={onChecked}
-                            posts={targets.filter(item => item.completed)}
-                            onDelete={setDeleteTarget}/>
+                            posts={state.list.filter(item => item.completed)}
+                            onDelete={deleteList}/>
                     </div>
                 </div>
             </div>
