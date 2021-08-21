@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react";
+import React, {useState} from "react";
 import { v4 as uuidv4 } from 'uuid';
 import Header from './components/header';
 import TodoList from "./components/todolist";
@@ -16,10 +16,12 @@ const initState = {
 const App = () => {
 
     const [state, setState] = useState(initState);
-
-    function isEdited() {
-            return state.isEdited;
-    }
+    // const {isEdited} = initState;
+    //
+    //
+    // function setIsEdited(isEdited) {
+    //         return isEdited;
+    // }
 
     function deleteList(id) {
             const newArr = state.list.filter(item => item.id !==id);
@@ -39,7 +41,8 @@ const App = () => {
             const newArr = [...state.list, newLabel];
             setState({
                 ...state,
-                list: newArr
+                list: newArr,
+                textInput: ''
             });
     }
 
@@ -93,91 +96,7 @@ const App = () => {
         })
     }
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         textInput: '',
-    //         isEdited: false,
-    //         editedId: '',
-    //         targets: []
-    //     }
-    //     this.deleteTarget = this.deleteTarget.bind(this);
-    //     this.addTarget = this.addTarget.bind(this);
-    //     this.onInputValue = this.onInputValue.bind(this);
-    //     this.onChecked = this.onChecked.bind(this);
-    //     this.onEdit=this.onEdit.bind(this);
-    //     this.saveTarget=this.saveTarget.bind(this);
-    //
-    //
-    // }
-    //
-    // deleteTarget(id) {
-    //     const targets = this.state.targets.filter(item => item.id !==id);
-    //     this.setState({targets});
-    //
-    // }
-    //
-    // addTarget() {
-    //    const newLabel = {
-    //             label: this.state.textInput,
-    //             completed: false,
-    //             id: uuidv4()
-    //     };
-    //     this.setState(({targets}) => {
-    //         const newArr = [...targets, newLabel];
-    //         return {
-    //             targets: newArr,
-    //             textInput: ''
-    //         }
-    //     });
-    //
-    // }
-    //
-    // onInputValue(e) {
-    //     this.setState(
-    //         {textInput: e.target.value}
-    //     )
-    // }
-    //
-    // onChecked(e, todoId) {
-    //     const newArr = this.state.targets.map((item) => {
-    //         if (item.id === todoId) {
-    //             return {...item, completed: e.target.checked}
-    //         } else {
-    //             return item
-    //         }
-    //     })
-    //     this.setState({targets : newArr});
-    // }
-    //
-    // onEdit(id){
-    //     const editedItem = this.state.targets.find((item) => item.id === id);
-    //     this.setState({
-    //         isEdited: true,
-    //         textInput: editedItem.label,
-    //         editedId: editedItem.id
-    //         })
-    //     console.log(editedItem.id, editedItem.label);
-    //
-    // }
-    //
-    // saveTarget() {
-    //     const editedArr = this.state.targets.map((item) => {
-    //         if (item.id === this.state.editedId) {
-    //             return {...item, label: this.state.textInput}
-    //         } else {
-    //             return {item}
-    //         }
-    //     })
-    //
-    //     this.setState({
-    //         isEdited: false,
-    //         targets: editedArr,
-    //         textInput: '',
-    //         editedId: ''
-    //     })
-    //
-    // }
+
         const completedTargets = state.list.filter(item => item.completed === true).length;
         const uncompletedTargets = state.list.filter(item => item.completed === false).length;
 
@@ -187,7 +106,7 @@ const App = () => {
             <div className='app'>
                 <Header
                     saveTarget={saveList}
-                    isEdited={isEdited}
+                    isEdited={state.isEdited}
                     addTarget={addList}
                     onInputValue={setTextInput}
                     value={state.textInput}/>
